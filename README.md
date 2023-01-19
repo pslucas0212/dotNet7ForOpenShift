@@ -8,3 +8,13 @@ Updated 19 January 2023
 - Note: I'm using a Mac for this example.
 - Download and install [.Net 7 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/7.0) for your OS.
 - Note: For this tutorial I used Microsoft's installation package for SDK 7.0.102
+
+![Download .Net 7](images/dot01.jpg)
+
+- Install the .Net SDK per the instructions for your OS
+- Test your .Net SDK installation
+
+```
+% dotnet --version
+5.0.23
+```
