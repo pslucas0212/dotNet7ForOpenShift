@@ -66,6 +66,8 @@ INFO Checking if crc-admin-helper executable is cached
 - Depending on your hardware, it make several minutes for CRC to startup.  Be sure to copy the login information that is displayed on the console after starting CRC.  See example output below.
 
 ```
+...
+INFO Adding crc-admin and crc-developer contexts to kubeconfig... 
 Started the OpenShift cluster.
 
 The server is accessible via web console at:
@@ -73,7 +75,7 @@ The server is accessible via web console at:
 
 Log in as administrator:
   Username: kubeadmin
-  Password: TDjTx-BwDqi-vDvqA-VAxJz
+  Password: zXje7-...-6aUho
 
 Log in as user:
   Username: developer
