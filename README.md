@@ -123,28 +123,55 @@ Now listening on: http://localhost:5206
 
 - When you are finished return to the terminal window and type Ctrl-c to stop the .Net test server.
 
+## Prep app for OCP
+- Use the following command to make the .Net app ready for the OCP build and deploy process. The dotnet publish command preps the applicaiton for deployment storing the .Net artifacts in a release folder.  The -f swith sets the framework to .Net 7.0 and -c switch defines the build configuration
 
+```
+% cd ..
+% dotnet publish myWebApp -f net7.0 -c Release
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  myWebApp -> /Users/palucas/projects/myWebApp/bin/Release/net7.0/myWebApp.dll
+  myWebApp -> /Users/palucas/projects/myWebApp/bin/Release/net7.0/publish/
+```
 ## Prep OCP for .Net
 - Login to OCP as developerl
+```
+% eval $(crc oc-env)
+% oc login -u developer -p developer https://api.crc.testing:6443
+Login successful.
 
-      % eval $(crc oc-env)
-      % oc login -u developer https://api.crc.testing:6443
+You don't have any projects. You can try to create a new project, by running
 
+    oc new-project <projectname>
+
+
+```
 - To see who you are logged in as type the following
-
-      % oc whoami
-      developer
-      
+```
+% oc whoami
+developer
+```      
 - Create a new OCP project (K8s namespace) for our .Net Welcome application.
+```
+% oc new-project my-first-app
+Now using project "my-first-app" on server "https://api.crc.testing:6443".
 
-      % oc new-project my-first-app
-      
+You can add applications to this project with the 'new-app' command. For example, try:
+
+    oc new-app rails-postgresql-example
+
+to build a new example application in Ruby. Or use kubectl to deploy a simple Kubernetes application:
+
+    kubectl create deployment hello-node --image=k8s.gcr.io/e2e-test-images/agnhost:2.33 -- /agnhost serve-hostname
+```      
 - You can check the project you are currently in with the following oc command:
-
-      % oc get projects
-      NAME           DISPLAY NAME   STATUS
-      my-first-app                  Active
-
+```
+% oc get projects
+NAME           DISPLAY NAME   STATUS
+my-first-app                  Active
+```
 - If this is your first .Net project in CRC, then you'll need to add a .Net imagestreams.  Imagestreams makes it easy to build and deploy our .Net app in a container and can be used to trigger new deployments when a new image becomes available   See links below for more informaton on Imagestreams
 
       % oc create -f https://raw.githubusercontent.com/redhat-developer/s2i-dotnetcore/master/dotnet_imagestreams.json
