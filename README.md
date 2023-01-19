@@ -124,7 +124,153 @@ Now listening on: http://localhost:5206
 - When you are finished return to the terminal window and type Ctrl-c to stop the .Net test server.
 
 
+## Prep OCP for .Net
+- Login to OCP as developerl
 
+      % eval $(crc oc-env)
+      % oc login -u developer https://api.crc.testing:6443
+
+- To see who you are logged in as type the following
+
+      % oc whoami
+      developer
+      
+- Create a new OCP project (K8s namespace) for our .Net Welcome application.
+
+      % oc new-project my-first-app
+      
+- You can check the project you are currently in with the following oc command:
+
+      % oc get projects
+      NAME           DISPLAY NAME   STATUS
+      my-first-app                  Active
+
+- If this is your first .Net project in CRC, then you'll need to add a .Net imagestreams.  Imagestreams makes it easy to build and deploy our .Net app in a container and can be used to trigger new deployments when a new image becomes available   See links below for more informaton on Imagestreams
+
+      % oc create -f https://raw.githubusercontent.com/redhat-developer/s2i-dotnetcore/master/dotnet_imagestreams.json
+      % oc replace -f https://raw.githubusercontent.com/redhat-developer/s2i-dotnetcore/master/dotnet_imagestreams.json
+      
+## Build, Deploy and access your new .Net app
+- Create a new build configuration.  We will use a Red Hat Universal Base Image (ubi8) that includes the .Net 5 SDK and runtimes.  UBI containers are OCI-compliant.  We are building the app from binary contents.  
+
+      % oc new-build --name=my-web-app dotnet:5.0-ubi8 --binary=true
+```      
+--> Found image b264294 (13 days old) in image stream "my-first-app/dotnet" under tag "5.0-ubi8" for "dotnet:5.0-ubi8"
+
+    .NET 5 
+    ------ 
+    Platform for building and running .NET 5 applications
+
+    Tags: builder, .net, dotnet, dotnetcore, dotnet-50
+
+    * A source build using binary input will be created
+      * The resulting image will be pushed to image stream tag "my-web-app:latest"
+      * A binary build was created, use 'oc start-build --from-dir' to trigger a new build
+
+--> Creating resources with label build=my-web-app ...
+    imagestream.image.openshift.io "my-web-app" created
+    buildconfig.build.openshift.io "my-web-app" created
+--> Success
+```
+      
+- Start the build and specify the path to the binary artifacts in .Net project (I'm at the "root" of my project folder myWebApp).
+
+      % oc start-build my-web-app --from-dir=bin/Release/net5.0/publish
+      
+```
+Uploading directory "bin/Release/net5.0/publish" as binary input for the build ...
+...........
+Uploading finished
+build.build.openshift.io/my-web-app-1 started
+```
+      
+- You can also check the logs to see if the build is completed.
+
+      % oc logs -f bc/my-web-app
+      
+- Create our new application on OCP.
+
+      % oc new-app my-web-app
+   
+```
+--> Found image 4dff9a4 (10 minutes old) in image stream "my-first-app/my-web-app" under tag "latest" for "my-web-app"
+
+    .NET 5 
+    ------ 
+    Platform for building and running .NET 5 applications
+
+    Tags: builder, .net, dotnet, dotnetcore, dotnet-50
+
+
+--> Creating resources ...
+    deployment.apps "my-web-app" created
+    service "my-web-app" created
+--> Success
+    Application is not exposed. You can expose services to the outside world by executing one or more of the commands below:
+     'oc expose service/my-web-app' 
+    Run 'oc status' to view your app.
+```
+
+- You can check the status of your app.
+
+      % oc status
+   
+```
+In project my-first-app on server https://api.crc.testing:6443
+
+svc/my-web-app - 10.217.4.30:8080
+  deployment/my-web-app deploys istag/my-web-app:latest <-
+    bc/my-web-app source builds uploaded code on istag/dotnet:5.0-ubi8 
+    deployment #2 running for 46 seconds - 1 pod
+    deployment #1 deployed 46 seconds ago
+
+
+1 info identified, use 'oc status --suggest' to see details.
+```
+
+- At this point we can log into the OCP console and see our application.
+
+![OCP Console login](/images/dot05.png)
+
+- Click on the Topology tab on the left side and the click the my-web-app project link.
+
+![OCP Console Topology](/images/dot06.png)
+
+- Hover over the app icon and click on the blue arrow to see more detail about our application.  Notice there is no route defined to get to our application.  A service is created when we created a new application, but we need to expose that service via a route to access our application from outside the OCP cluster
+
+![application detail](/images/dot07.png)
+
+
+- Back at the command line let's make our app available to the outside world.
+
+      % oc expose service/my-web-app
+      route.route.openshift.io/my-web-app exposed
+      
+- Get the the URL to your app.
+
+      # oc status
+
+```
+In project my-first-app on server https://api.crc.testing:6443
+
+http://my-web-app-my-first-app.apps-crc.testing to pod port 8080-tcp (svc/my-web-app)
+  deployment/my-web-app deploys istag/my-web-app:latest <-
+    bc/my-web-app source builds uploaded code on istag/dotnet:5.0-ubi8 
+    deployment #2 running for 8 minutes - 1 pod
+    deployment #1 deployed 8 minutes ago
+
+
+1 info identified, use 'oc status --suggest' to see details.
+```
+
+- Back at the OCP console we now see our app is available to the outside world.  You can click on the link in the Routes section to access your application.
+
+![App route available](/images/dot08.png)
+
+## Access the OCP console to see your project and app
+- No we can see our application running on OCP.  My URL looked like this: https://console-openshift-console.apps-crc.testing
+
+![.Net App Running on OCP](/images/dot09.png)
 
 
 ## References
