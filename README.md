@@ -172,15 +172,16 @@ to build a new example application in Ruby. Or use kubectl to deploy a simple Ku
 NAME           DISPLAY NAME   STATUS
 my-first-app                  Active
 ```
-- If this is your first .Net project in CRC, then you'll need to add a .Net imagestreams.  Imagestreams makes it easy to build and deploy our .Net app in a container and can be used to trigger new deployments when a new image becomes available   See links below for more informaton on Imagestreams
-
-      % oc create -f https://raw.githubusercontent.com/redhat-developer/s2i-dotnetcore/master/dotnet_imagestreams.json
-      % oc replace -f https://raw.githubusercontent.com/redhat-developer/s2i-dotnetcore/master/dotnet_imagestreams.json
-      
+- If this is your first .Net project in RHOL, then you'll need to add a .Net image stream.  Image streams makes it easy to build and deploy our .Net app in a container and can be used to trigger new deployments when a new image becomes available   See links below for more informaton on Imagestreams
+ ```
+% oc create -f https://raw.githubusercontent.com/redhat-developer/s2i-dotnetcore/master/dotnet_imagestreams.json
+imagestream.image.openshift.io/dotnet created
+imagestream.image.openshift.io/dotnet-runtime created
+```      
 ## Build, Deploy and access your new .Net app
-- Create a new build configuration.  We will use a Red Hat Universal Base Image (ubi8) that includes the .Net 5 SDK and runtimes.  UBI containers are OCI-compliant.  We are building the app from binary contents.  
-
-      % oc new-build --name=my-web-app dotnet:5.0-ubi8 --binary=true
+- Create a new build configuration.  We will use a Red Hat Universal Base Image (ubi8) that includes the .Net 7 SDK and runtimes.  UBI containers are OCI-compliant.  We are building the app from binary contents.  
+```
+% oc new-build --name=my-web-app dotnet:7.0-ubi8 --binary=true
 ```      
 --> Found image b264294 (13 days old) in image stream "my-first-app/dotnet" under tag "5.0-ubi8" for "dotnet:5.0-ubi8"
 
