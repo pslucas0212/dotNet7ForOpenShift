@@ -36,7 +36,7 @@ Updated 19 January 2023
 % mv pull-secret ~/Documents/rhol/
 ```
 
-- Check the RHOL version.  Note that RHOL still uses the previous Code Ready Containers acronym - crs.  As of 01/19/2023 the latest release was 2.12 with OpenShift 4.11.18
+- Check the RHOL version.  Note that RHOL still uses the previous Code Ready Containers acronym - crc.  As of 01/19/2023 the latest release was 2.12 with OpenShift 4.11.18
 
 ```
 % crc version
@@ -47,7 +47,40 @@ Podman version: 4.2.0
 - Run the setup command to download the CRC bundle and prep your environment. This typically takes a few mintues.
 ```      
 % crc setup
- <output omitted>
+CRC is constantly improving and we would like to know more about usage (more details at https://developers.redhat.com/article/tool-data-collection)
+...
+Your system is correctly setup for using CRC. Use 'crc start' to start the instance
  ```
         
+## Start up Red Hat OpenShift Local
+- Start up RHOL an include the pull secret you previously downloaded
+
+```
+% crc start -p ~/Documents/rhol/pull-secret
+INFO Checking if running as non-root              
+INFO Checking if crc-admin-helper executable is cached 
+...
+
+````
+
+- Depending on your hardware, it make several minutes for CRC to startup.  Be sure to copy the login information that is displayed on the console after starting CRC.  See example output below.
+
+```
+Started the OpenShift cluster.
+
+The server is accessible via web console at:
+  https://console-openshift-console.apps-crc.testing
+
+Log in as administrator:
+  Username: kubeadmin
+  Password: TDjTx-BwDqi-vDvqA-VAxJz
+
+Log in as user:
+  Username: developer
+  Password: developer
+
+Use the 'oc' command line interface:
+  $ eval $(crc oc-env)
+  $ oc login -u developer https://api.crc.testing:6443
+```
 
