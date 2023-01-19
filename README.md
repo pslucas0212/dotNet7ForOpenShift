@@ -182,14 +182,14 @@ imagestream.image.openshift.io/dotnet-runtime created
 - Create a new build configuration.  We will use a Red Hat Universal Base Image (ubi8) that includes the .Net 7 SDK and runtimes.  UBI containers are OCI-compliant.  We are building the app from binary contents.  
 ```
 % oc new-build --name=my-web-app dotnet:7.0-ubi8 --binary=true
-```      
---> Found image b264294 (13 days old) in image stream "my-first-app/dotnet" under tag "5.0-ubi8" for "dotnet:5.0-ubi8"
+warning: Cannot check if git requires authentication.
+--> Found image 3aceb77 (8 days old) in image stream "my-first-app/dotnet" under tag "7.0-ubi8" for "dotnet:7.0-ubi8"
 
-    .NET 5 
+    .NET 7 
     ------ 
-    Platform for building and running .NET 5 applications
+    Platform for building and running .NET 7 applications
 
-    Tags: builder, .net, dotnet, dotnetcore, dotnet-50
+    Tags: builder, .net, dotnet, dotnetcore, dotnet-70
 
     * A source build using binary input will be created
       * The resulting image will be pushed to image stream tag "my-web-app:latest"
@@ -199,38 +199,40 @@ imagestream.image.openshift.io/dotnet-runtime created
     imagestream.image.openshift.io "my-web-app" created
     buildconfig.build.openshift.io "my-web-app" created
 --> Success
+
 ```
       
 - Start the build and specify the path to the binary artifacts in .Net project (I'm at the "root" of my project folder myWebApp).
-
-      % oc start-build my-web-app --from-dir=bin/Release/net5.0/publish
-      
 ```
-Uploading directory "bin/Release/net5.0/publish" as binary input for the build ...
-...........
+oc start-build my-web-app --from-dir=bin/Release/net7.0/publish
+Uploading directory "bin/Release/net7.0/publish" as binary input for the build ...
+....
 Uploading finished
 build.build.openshift.io/my-web-app-1 started
 ```
       
-- You can also check the logs to see if the build is completed.
-
-      % oc logs -f bc/my-web-app
+- You can also check status of the build process in the log file to see when the build is completed. 
+```
+% oc logs -f bc/my-web-app
+Receiving source from STDIN as archive ...
+...
+Push successful
+```
       
 - Create our new application on OCP.
-
-      % oc new-app my-web-app
-   
 ```
---> Found image 4dff9a4 (10 minutes old) in image stream "my-first-app/my-web-app" under tag "latest" for "my-web-app"
+oc new-app my-web-app
+--> Found image fb95e95 (About a minute old) in image stream "my-first-app/my-web-app" under tag "latest" for "my-web-app"
 
-    .NET 5 
+    .NET 7 
     ------ 
-    Platform for building and running .NET 5 applications
+    Platform for building and running .NET 7 applications
 
-    Tags: builder, .net, dotnet, dotnetcore, dotnet-50
+    Tags: builder, .net, dotnet, dotnetcore, dotnet-70
 
 
 --> Creating resources ...
+Warning: would violate PodSecurity "restricted:v1.24": allowPrivilegeEscalation != false (container "my-web-app" must set securityContext.allowPrivilegeEscalation=false), unrestricted capabilities (container "my-web-app" must set securityContext.capabilities.drop=["ALL"]), runAsNonRoot != true (pod or container "my-web-app" must set securityContext.runAsNonRoot=true), seccompProfile (pod or container "my-web-app" must set securityContext.seccompProfile.type to "RuntimeDefault" or "Localhost")
     deployment.apps "my-web-app" created
     service "my-web-app" created
 --> Success
@@ -239,22 +241,41 @@ build.build.openshift.io/my-web-app-1 started
     Run 'oc status' to view your app.
 ```
 
-- You can check the status of your app.
+- You can check the status of your app deployment.
 
-      % oc status
-   
-```
+``` % oc status
 In project my-first-app on server https://api.crc.testing:6443
 
-svc/my-web-app - 10.217.4.30:8080
+svc/my-web-app - 10.217.5.240:8080
   deployment/my-web-app deploys istag/my-web-app:latest <-
-    bc/my-web-app source builds uploaded code on istag/dotnet:5.0-ubi8 
-    deployment #2 running for 46 seconds - 1 pod
-    deployment #1 deployed 46 seconds ago
+    bc/my-web-app source builds uploaded code on istag/dotnet:7.0-ubi8 
+    deployment #2 running for 49 seconds - 1 pod
+    deployment #1 deployed 51 seconds ago
 
 
 1 info identified, use 'oc status --suggest' to see details.
 ```
+We can see that the... service is create with appplication deployment
+```
+ % oc get svc
+NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+my-web-app   ClusterIP   10.217.5.240   <none>        8080/TCP   105s
+```
+
+Let's expose the app to the world be creating a route to the app.
+```
+% oc expose svc/my-web-app
+route.route.openshift.io/my-web-app exposed
+```
+Let's get the url to the app
+```
+% oc get route/my-web-app
+NAME         HOST/PORT                                  PATH   SERVICES     PORT       TERMINATION   WILDCARD
+my-web-app   my-web-app-my-first-app.apps-crc.testing          my-web-app   8080-tcp                 None
+```
+
+Go to your web browser and type in the url http://my-web-app-my-first-app.apps-crc.testing to see your app running in OCP.
+
 
 - At this point we can log into the OCP console and see our application.
 
