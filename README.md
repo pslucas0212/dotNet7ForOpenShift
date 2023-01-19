@@ -96,23 +96,32 @@ You have access to 67 projects, the list has been suppressed. You can list all p
 Using project "default".
 ```
 ## Create a sample Hello World .Net web app
-Now let's create our sample .Net application.  Choose a directory where you would like to store your sample appication.  I created my sample Hello World .Net web app in a directory called projects
+Now let's create our sample .Net application.  Choose a directory where you would like to store your sample appication.  I created my sample Hello World .Net web app in a directory called projects.  We will use the .Net Model-View-Controller (mvc) template to build our sample .Net application.
 
 ```
-% dotnet new webApp -o myWebApp --no-https
+% dotnet new mvc -o myWebApp --no-https
 ```
 
 - When the sample app code has finished generating change into the applicaiton's directory and start up the applicaiton.
 
-       % cd myWebApp
-       % dotnet run
+```
+% cd myWebApp
+% dotnet run
+Building...
+...
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: /Users/palucas/projects/myWebApp
+```
        
-- The app starts up quickly and is ready to test when **Contentr root path:...** on the treminal screend.  Follow the instructions to access the application via a browser.
-- The URL for the app is likely: http://localhost:5000
+- The app starts up quickly and is ready to test when **Content root path:...** printed to the terminal screen.  Follow the instructions to access the application via a browser.
+- The URL for my sample app was found on this line in the terminal output
+```
+Now listening on: http://localhost:5206
+```
 
 ![.Net App Welcome Page](/images/dot03.png)
 
-- When you are finished type Ctrl-c from the terminal window to stop server.
+- When you are finished return to the terminal window and type Ctrl-c to stop the .Net test server.
 
 
 
