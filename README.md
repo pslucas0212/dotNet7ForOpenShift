@@ -85,7 +85,32 @@ Use the 'oc' command line interface:
   $ eval $(crc oc-env)
   $ oc login -u developer https://api.crc.testing:6443
 ```
+- We can test our login to RHOL with the information from the installation.  We use the oc login command provide the userid and passward along with the URL to the RHOL Server.
+```
+% eval $(crc oc-env)
+% oc login -u kubeadmin -p zXje7-...-6aUho https://api.crc.testing:6443
+Login successful.
 
+You have access to 67 projects, the list has been suppressed. You can list all projects with 'oc projects'
+
+Using project "default".
+```
+## Create a sample Hello World .Net web app
+Now let's create our sample .Net application.  Chose a directory wher you would like to store your sample appication.  I created my sample Hello World .Net web app in a directory called projects
+
+       % dotnet new webApp -o myWebApp --no-https
+       
+- When the sample app code has finished generating change into the applicaiton's directory and start up the applicaiton.
+
+       % cd myWebApp
+       % dotnet run
+       
+- The app starts up quickly and is ready to test when **Contentr root path:...** on the treminal screend.  Follow the instructions to access the application via a browser.
+- The URL for the app is likely: http://localhost:5000
+
+![.Net App Welcome Page](/images/dot03.png)
+
+- When you are finished type Ctrl-c from the terminal window to stop server.
 
 
 
