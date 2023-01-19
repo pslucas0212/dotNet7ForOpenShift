@@ -119,7 +119,7 @@ info: Microsoft.Hosting.Lifetime[0]
 Now listening on: http://localhost:5206
 ```
 
-![.Net App Welcome Page](/images/dot03.png)
+![.Net App Welcome Page](/images/dot03.jpg)
 
 - When you are finished return to the terminal window and type Ctrl-c to stop the .Net test server.
 
