@@ -16,5 +16,16 @@ Updated 19 January 2023
 
 ```
 % dotnet --version
-5.0.23
+7.0.102
 ```
+
+## Install Red Hat OpenShift Local
+- For this next step you will need a Red Hat account.
+- Download the Red Hat OpenShift Local (RHOL) for you OS from the Red Hat Hybrid Cloud Console [Create an OpenShift cluster](https://console.redhat.com/openshift/create/local) 
+- Chose the "local" tab and select your OS.
+- After you download CRC, click the Download pull secret
+
+![Create an OpenShift cluster](/images/dot2.jpg)
+
+- After you download the code run the installer.  The latest release of CRC takes care of installing CRC for you.
+
