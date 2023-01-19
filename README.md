@@ -221,7 +221,7 @@ Push successful
       
 - Create our new application on OCP.
 ```
-oc new-app my-web-app
+%oc new-app my-web-app
 --> Found image fb95e95 (About a minute old) in image stream "my-first-app/my-web-app" under tag "latest" for "my-web-app"
 
     .NET 7 
@@ -243,7 +243,8 @@ Warning: would violate PodSecurity "restricted:v1.24": allowPrivilegeEscalation 
 
 - You can check the status of your app deployment.
 
-``` % oc status
+``` 
+% oc status
 In project my-first-app on server https://api.crc.testing:6443
 
 svc/my-web-app - 10.217.5.240:8080
@@ -257,7 +258,7 @@ svc/my-web-app - 10.217.5.240:8080
 ```
 We can see that the... service is create with appplication deployment
 ```
- % oc get svc
+% oc get svc
 NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
 my-web-app   ClusterIP   10.217.5.240   <none>        8080/TCP   105s
 ```
@@ -276,6 +277,19 @@ my-web-app   my-web-app-my-first-app.apps-crc.testing          my-web-app   8080
 
 Go to your web browser and type in the url http://my-web-app-my-first-app.apps-crc.testing to see your app running in OCP.
 
+We can see the pods running in our project
+```
+% oc get pods
+NAME                         READY   STATUS      RESTARTS   AGE
+my-web-app-1-build           0/1     Completed   0          10m
+my-web-app-ddfbd687b-9h5tf   1/1     Running     0          7m43s
+```
+And we can see our deployments in our project
+```
+% oc get deployments
+NAME         READY   UP-TO-DATE   AVAILABLE   AGE
+my-web-app   1/1     1            1           8m4s
+```
 
 - At this point we can log into the OCP console and see our application.
 
