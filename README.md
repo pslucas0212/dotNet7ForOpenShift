@@ -302,6 +302,6 @@ http://my-web-app-my-first-app.apps-crc.testing to pod port 8080-tcp (svc/my-web
 
 ## References
 - [Product Documentation for Red Hat OpenShift Local 2.12](https://access.redhat.com/documentation/en-us/red_hat_openshift_local/2.12)
-- [Product Documentation for .NET 7.0]([https://access.redhat.com/documentation/en-us/net/5.0/html-single/getting_started_with_.net_on_rhel_8/index#publishing-apps-using-dotnet_using-dotnet-on-rhel](https://access.redhat.com/documentation/en-us/net/7.0))
-- [Managing Imagestreams OCP 4.11]([https://docs.openshift.com/container-platform/4.7/openshift_images/image-streams-manage.html](https://docs.openshift.com/container-platform/4.11/openshift_images/image-streams-manage.html))
+- [Product Documentation for .NET 7.0](https://access.redhat.com/documentation/en-us/net/7.0)
+- [Managing Imagestreams OCP 4.11](https://docs.openshift.com/container-platform/4.11/openshift_images/image-streams-manage.html)
 
