@@ -29,3 +29,24 @@ Updated 19 January 2023
 
 - After you download the code run the installer.  The latest release of CRC takes care of installing CRC for you.
 
+## Prep your CodeReady Containers environment
+- After installing CRC, we will do the rest of the work on the command line.  On the Mac open a Terminal window.  I placed the pull secret in my home Documents folder in a folder I labeled crc.  On the Mac or Linux it might look like this: ~/Documents/crc
+
+```
+% cp pull-secret\(1\) ~/Documents/crc/pull-secret.txt
+```
+
+- Check the CRC version.  As of 5/18/2021 the latest release was 1.26 with OpenShift 4.7.9
+
+```
+% crc version
+CodeReady Containers version: 1.26.0+31f06c09
+OpenShift version: 4.7.8 (not embedded in executable)
+```      
+- Run the setup command to download the CRC bundle and prep your environment. This typically takes a few mintues.
+```      
+% crc setup
+ <output omitted>
+ ```
+        
+
