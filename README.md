@@ -96,10 +96,12 @@ You have access to 67 projects, the list has been suppressed. You can list all p
 Using project "default".
 ```
 ## Create a sample Hello World .Net web app
-Now let's create our sample .Net application.  Chose a directory wher you would like to store your sample appication.  I created my sample Hello World .Net web app in a directory called projects
+Now let's create our sample .Net application.  Choose a directory where you would like to store your sample appication.  I created my sample Hello World .Net web app in a directory called projects
 
-       % dotnet new webApp -o myWebApp --no-https
-       
+```
+% dotnet new webApp -o myWebApp --no-https
+```
+
 - When the sample app code has finished generating change into the applicaiton's directory and start up the applicaiton.
 
        % cd myWebApp
