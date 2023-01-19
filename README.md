@@ -276,7 +276,7 @@ my-web-app   my-web-app-my-first-app.apps-crc.testing          my-web-app   8080
 ```
 
 Go to your web browser and type in the url http://my-web-app-my-first-app.apps-crc.testing to see your app running in OCP.
-
+![Welcome running on OCP](/images/dot04.jpg)
 We can see the pods running in our project
 ```
 % oc get pods
