@@ -27,21 +27,22 @@ Updated 19 January 2023
 
 ![Create an OpenShift cluster](/images/dot02.jpg)
 
-- After you download the code run the installer.  The latest release of CRC takes care of installing CRC for you.
+- After you download the code run the installer.  The latest release of RHOL takes care of installing RHOL for you.
 
 ## Prep your CodeReady Containers environment
-- After installing CRC, we will do the rest of the work on the command line.  On the Mac open a Terminal window.  I placed the pull secret in my home Documents folder in a folder I labeled crc.  On the Mac or Linux it might look like this: ~/Documents/crc
+- After installing RHOL, we will do the rest of the work on the command line.  On the Mac open a Terminal window.  I placed the pull secret in my home Documents folder in a folder I labeled crc.  On the Mac or Linux it might look like this: ~/Documents/rhol
 
 ```
-% cp pull-secret\(1\) ~/Documents/crc/pull-secret.txt
+% mv pull-secret ~/Documents/rhol/
 ```
 
-- Check the CRC version.  As of 5/18/2021 the latest release was 1.26 with OpenShift 4.7.9
+- Check the RHOL version.  Note that RHOL still uses the previous Code Ready Containers acronym - crs.  As of 01/19/2023 the latest release was 2.12 with OpenShift 4.11.18
 
 ```
 % crc version
-CodeReady Containers version: 1.26.0+31f06c09
-OpenShift version: 4.7.8 (not embedded in executable)
+CRC version: 2.12.0+ea98bb41
+OpenShift version: 4.11.18
+Podman version: 4.2.0
 ```      
 - Run the setup command to download the CRC bundle and prep your environment. This typically takes a few mintues.
 ```      
