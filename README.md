@@ -25,7 +25,7 @@ Updated 19 January 2023
 - Chose the "local" tab and select your OS.
 - After you download CRC, click the Download pull secret
 
-![Create an OpenShift cluster](/images/dot2.jpg)
+![Create an OpenShift cluster](/images/dot02.jpg)
 
 - After you download the code run the installer.  The latest release of CRC takes care of installing CRC for you.
 
