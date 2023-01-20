@@ -340,6 +340,13 @@ Currenlty we are logged in as the developer username with the Developer view of 
 
 ![OCP Topology View](/images/dot06.jpg)
 
+We can view Details, Resources and Observe (monitor) our application. Clicking on the Resources tab shows us the Kubernetes object associated with our project.
+
+![OCP app view](/images/dot07.jpg)
+
+While logged in as the developer we can change the console view from the Developer view to the Adminstrator view.  We can create, review and observe our all the Kubernetes objecst that make up our application(s) running in OpenShift.  
+
+![OCP Admin view](/images/dot08.jpg)
 
 
 
