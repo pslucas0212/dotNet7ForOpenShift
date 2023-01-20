@@ -336,7 +336,15 @@ Enter your Username and Password, and click the blue Login button.
 
 When logging into the OCP console for the first time, you may offered to take a tour of the console.  Feel free to take the tour or skip it.
 
-Click on the Topolog tab on the side menu bar to to see the topolog of our application.  We can see our app has successfully deployed with the green check circle.  On the upper right we click the arrow to open application UI in a new browser tab.  If we click the ap
+Currenlty we are logged in as the developer username with the Developer view of the OCP Console.  Click on the Topology tab on the side menu bar to to see the topolog of our application.  We can see our app has successfully deployed with the green check circle.  On the upper right we click the arrow to open application UI in a new browser tab.  If we click the app name a side screen will open with additional application deployment details
+
+![OCP Topology View](/images/dot06.jpg)
+
+
+
+
+
+
 
 - At this point we can log into the OCP console and see our application.
 
