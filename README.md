@@ -454,7 +454,7 @@ Push successful
 
 ```
 
-If you forgot your applications URL, use the oc status command to get the URL
+If you forgot the URL to our sample application, use the oc status command to get the URL
 ```
 oc status
 In project my-first-app on server https://api.crc.testing:6443
@@ -466,7 +466,7 @@ http://my-web-app-my-first-app.apps-crc.testing to pod port 8080-tcp (svc/my-web
 You'll now see the new version of our applcation has been deployed to OCP
 ![Updated .Net App](/images/dot10.jpg)
 
-Go back to the OCP console and make sure you are under the Administrator view.  We can see the new build config under the Workloads section, and the new Pod instance for our application
+Go back to the OCP console and change to the Administrator view.  We can see the new build config under the Workloads section, and the new Pod instance for our application
 ![OCP Console Pods](/images/dot11.jpg)
 
 ### Conclusion
