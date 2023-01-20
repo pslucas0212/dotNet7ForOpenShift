@@ -4,7 +4,7 @@ In this tutoria we will create a simple Hello World .Net 7 application and run i
 
 The tutorial will demonstrate how easy it is to get started with development in Kubernetes with the Red Hat OpenShift Container Platform (OCP). OCP supports many languages and you can easily bring your .Net code to the world of containers and Kubernetes with OCP.
 
-Updated 19 January 2023
+Updated 20 January 2023
 
 ### Pre-req .Net 7 SDK
 - Note: I'm using a Mac for this example.
