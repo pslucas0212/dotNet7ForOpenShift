@@ -1,6 +1,6 @@
 # Run .Net 7 code on Red Hat OpenShift Container Platform on Mac OS
 
-In this tutoria we will create a simple Hello World .Net 7 application and run it on a local instance of Red Hat OpenShift AKA OpenShift Local. 
+In this tutorial we will create a simple Hello World .Net 7 application and run it on a local instance of Red Hat OpenShift AKA OpenShift Local. 
 
 The tutorial will demonstrate how easy it is to get started with development in Kubernetes with the Red Hat OpenShift Container Platform (OCP). OCP supports many languages and you can easily bring your .Net code to the world of containers and Kubernetes with OCP.
 
@@ -27,7 +27,7 @@ Download the Red Hat OpenShift Local (RHOL) for you OS from the Red Hat Hybrid C
 
 Chose the "local" tab and select your OS.
 
-After you download RHOL, click the Download pull secret
+After you download RHOL, click the Download pull secret button.
 
 ![Create an OpenShift cluster](/images/dot02.jpg)
 
@@ -40,7 +40,7 @@ After installing RHOL, we will do the rest of the work on the command line.  On 
 % mv pull-secret ~/Documents/rhol/
 ```
 
-Check the RHOL version.  Note that RHOL still uses the previous Code Ready Containers acronym - crc.  As of 01/19/2023 the latest release RHOL is 2.12 with OpenShift 4.11.18
+Check the RHOL version.  Note that RHOL still uses the previous Code Ready Containers acronym - crc - on the command line to start and manage RHOL.  As of 01/19/2023 the latest release RHOL is 2.12 with OpenShift 4.11.18
 
 ```
 % crc version
@@ -90,7 +90,7 @@ Use the 'oc' command line interface:
   $ oc login -u developer https://api.crc.testing:6443
 ```
 
-We can test our login to RHOL with the information from the installation.  We use the oc login command provide the userid and passward along with the URL to the RHOL Server.
+We can test our login to RHOL with the information from the installation.  We use the oc login command and provide the username and password along with the URL to the RHOL Server.
 ```
 % eval $(crc oc-env)
 % oc login -u kubeadmin -p zXje7-...-6aUho https://api.crc.testing:6443
@@ -131,7 +131,7 @@ When you are finished return to the terminal window and type Ctrl-c to stop the 
 
 ## Prep app for OpenShift Container Platform (RHOL)
 
-I  refer to Red Hat OpenShift Locat as OpenShift Container platform (OCP) for the following steps.  Use the following command to make the .Net app ready for the OCP build and deploy process. The dotnet publish command preps the applicaiton for deployment storing the .Net artifacts in a release folder.  The -f swith sets the framework to .Net 7.0 and -c switch defines the build configuration
+I refer to Red Hat OpenShift Local as OpenShift Container platform (OCP) for the following steps.  Use the following command to make the .Net app ready for the OCP build and deploy process. The dotnet publish command preps the applicaiton for deployment storing the .Net artifacts in a release folder.  The -f swith sets the framework to .Net 7.0 and -c switch defines the build configuration
 
 ```
 % cd ..
@@ -143,7 +143,7 @@ MSBuild version 17.4.1+9a89d02ff for .NET
   myWebApp -> /Users/palucas/projects/myWebApp/bin/Release/net7.0/publish/
 ```
 ## Prep OCP for .Net
-Login to OCP as developer
+Login to OCP as the user developer
 ```
 % eval $(crc oc-env)
 % oc login -u developer -p developer https://api.crc.testing:6443
@@ -183,7 +183,7 @@ NAME           DISPLAY NAME   STATUS
 my-first-app                  Active
 ```
 
-If this is your first .Net project in RHOL, then you'll need to add a .Net image stream.  Image streams makes it easy to build and deploy our .Net app in a container and can be used to trigger new deployments when a new image becomes available   See links below for more informaton on Imagestreams
+If this is your first .Net project in RHOL, then you'll need to add a .Net image stream.  Image streams makes it easy to build and deploy our .Net app in a container and can be used to trigger new deployments when a new image becomes available   See links below for more informaton on image streams.
  ```
 % oc create -f https://raw.githubusercontent.com/redhat-developer/s2i-dotnetcore/master/dotnet_imagestreams.json
 imagestream.image.openshift.io/dotnet created
@@ -276,13 +276,13 @@ NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
 my-web-app   ClusterIP   10.217.5.240   <none>        8080/TCP   105s
 ```
 
-Let's expose the app to the world be creating a route to the app.
+Let's expose the app to the world by creating a route to the app.
 ```
 % oc expose svc/my-web-app
 route.route.openshift.io/my-web-app exposed
 ```
 
-Let's see the rouute we just created
+Let's see the route we just created
 ```
 % oc get route/my-web-app
 NAME         HOST/PORT                                  PATH   SERVICES     PORT       TERMINATION   WILDCARD
@@ -339,22 +339,22 @@ Enter your Username and Password, and click the blue Login button.
 
 When logging into the OCP console for the first time, you may offered to take a tour of the console.  Feel free to take the tour or skip it.
 
-Currenlty we are logged in as the developer username with the Developer view of the OCP Console.  Click on the Topology tab on the side menu bar to to see the topolog of our application.  We can see our app has successfully deployed with the green check circle.  On the upper right we click the arrow to open application UI in a new browser tab.  If we click the app name a side screen will open with additional application deployment details
+Currenlty we are logged in as the developer username with the Developer view of the OCP Console.  Click on the Topology tab on the side menu bar to see the topology of our application.  We can see our app has successfully deployed with the green check circle.  On the upper right we click the arrow to open application UI in a new browser tab.  If we click the app name a side screen will open with additional application deployment details
 
 ![OCP Topology View](/images/dot06.jpg)
 
-We can view Details, Resources and Observe (monitor) our application. Clicking on the Resources tab shows us the Kubernetes object associated with our project.
+We can view Details, Resources and Observe (monitor) our application. Clicking on the Resources tab shows us the Kubernetes objects associated with our project.
 
 ![OCP app view](/images/dot07.jpg)
 
-While logged in as the developer we can change the console view from the Developer view to the Adminstrator view.  We can create, review and observe our all the Kubernetes objecst that make up our application(s) running in OpenShift.  
+While logged in as the developer we can change the console view from the Developer view to the Adminstrator view.  We can create, review and observe our all the Kubernetes objects that make up our application(s) running in OpenShift.  
 
 ![OCP Admin view](/images/dot08.jpg)
 
 ## Updating the Application
 Let's make a simple change to our application and then update it on OCP.
 
-Let's change the "Welcome" message to "Welcome from OpenShift Container Platform!".
+Let's change the "Welcome" message to "Welcome to .Net running on Red Hat OpenShift Container Platform!".
 
 
 Back af the folder containing your .Net project, navigate to the Home directory under your project.
@@ -375,7 +375,7 @@ Change the following line:
 
 to:
 ```
-<h1 class="display-4">Welcome to .Net running on Red Hat OpenShift Container</h1>
+<h1 class="display-4">Welcome to .Net running on Red Hat OpenShift Containe Platformr</h1>
 ```
 
 My file looked like this...
@@ -385,7 +385,7 @@ My file looked like this...
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome to .Net running on Red Hat OpenShift Container</h1>
+    <h1 class="display-4">Welcome to .Net running on Red Hat OpenShift Container Platform</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 ```
@@ -409,7 +409,6 @@ MSBuild version 17.4.1+9a89d02ff for .NET
 
 Let's deploy update application to OCP
 
-Make sure you are logged in to OCP
 Login to OCP as developer.  Make sure you see that you are using the same project we originally created for our first application.
 ```
 % eval $(crc oc-env)
@@ -447,7 +446,7 @@ http://my-web-app-my-first-app.apps-crc.testing to pod port 8080-tcp (svc/my-web
 1 info identified, use 'oc status --suggest' to see details.
 ```
 
-Let's check log file of the build configuration to see when it finishes.  Watch for the 'Push successful' message.
+Let's check log file of the build configuration to see when it finishes.  Watch for the 'Push successful' message which indicates the update is finished.
 ```
 oc logs -f bc/my-web-app 
 Receiving source from STDIN as archive ...
