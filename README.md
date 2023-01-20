@@ -298,7 +298,7 @@ Opening the OpenShift Web Console in the default browser...
 ```
  - The crc console commands launches the console in your default browser.  Typically the URL looks like https://console-openshift-console.apps-crc.testing/  Your browser will tell you that your connection is not private as the OCP TLS certificate is not installed with your broswer certificates.  Accept any certificates presented to you.
 
-Enter your user id and password, and click the blue Login button.
+- Enter your Username and Password, and click the blue Login button.
 
 ![Login in to OCP](/images/dot05.jpg)
 
