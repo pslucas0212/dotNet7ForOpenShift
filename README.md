@@ -290,6 +290,17 @@ And we can see our deployments in our project
 NAME         READY   UP-TO-DATE   AVAILABLE   AGE
 my-web-app   1/1     1            1           8m4s
 ```
+## Access the OCP console to see your project and app
+Let's take a look at the OCP Console 
+```
+% crc console
+Opening the OpenShift Web Console in the default browser...
+```
+ - The crc console commands launches the console in your default browser.  Typically the URL looks like https://console-openshift-console.apps-crc.testing/  Your browser will tell you that your connection is not private as the OCP TLS certificate is not installed with your broswer certificates.  Acceppt any certificates presented to you.
+
+
+
+![.Net App Running on OCP](/images/dot09.png)
 
 - At this point we can log into the OCP console and see our application.
 
