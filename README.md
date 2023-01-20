@@ -231,7 +231,7 @@ Push successful
       
 Create our new application on OCP.
 ```
-%oc new-app my-web-app
+% oc new-app my-web-app
 --> Found image fb95e95 (About a minute old) in image stream "my-first-app/my-web-app" under tag "latest" for "my-web-app"
 
     .NET 7 
@@ -333,6 +333,10 @@ The crc console commands launches the console in your default browser.  Typicall
 Enter your Username and Password, and click the blue Login button.
 
 ![Login in to OCP](/images/dot05.jpg)
+
+When logging into the OCP console for the first time, you may offered to take a tour of the console.  Feel free to take the tour or skip it.
+
+Click on the Topolog tab on the side menu bar to to see the topolog of our application.  We can see our app has successfully deployed with the green check circle.  On the upper right we click the arrow to open application UI in a new browser tab.  If we click the ap
 
 - At this point we can log into the OCP console and see our application.
 
