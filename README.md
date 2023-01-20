@@ -470,7 +470,8 @@ Go back to the OCP console and make sure you are under the Administrator view.  
 ![OCP Console Pods](/images/dot11.jpg)
 
 ### Conclusion
-From this brief tutorial we can see how easy it is to bring our .Net applications in to the modern kubernetes architecture.  OpenShift can run anywhere from the desktop to the datacenter to the public cloud.  You can integrate OCP into your .Net CI/CD pipeline to make fast and efficient enterprise software lifecycle environment.
+From this brief tutorial we can see how easy it is to bring our .Net applications in to a modern enterprise ready kubernetes platform like OpenShift.  OpenShift can run anywhere from the desktop to the datacenter to the public cloud in any hybrid combination.  OCP is flexible enough to
+integrate OCP into your .Net CI/CD pipeline using tools like Visual Code and GitLab to make for a fast and efficient enterprise software lifecycle environment.
 
 ## References
 - [Product Documentation for Red Hat OpenShift Local 2.12](https://access.redhat.com/documentation/en-us/red_hat_openshift_local/2.12)
