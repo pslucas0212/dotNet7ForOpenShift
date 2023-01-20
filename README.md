@@ -268,16 +268,30 @@ Let's expose the app to the world be creating a route to the app.
 % oc expose svc/my-web-app
 route.route.openshift.io/my-web-app exposed
 ```
-Let's get the url to the app
+Let's see the rouute we just created
 ```
 % oc get route/my-web-app
 NAME         HOST/PORT                                  PATH   SERVICES     PORT       TERMINATION   WILDCARD
 my-web-app   my-web-app-my-first-app.apps-crc.testing          my-web-app   8080-tcp                 None
 ```
+Let's get the url to the app
+```
+% oc status
+In project my-first-app on server https://api.crc.testing:6443
 
+http://my-web-app-my-first-app.apps-crc.testing to pod port 8080-tcp (svc/my-web-app)
+  deployment/my-web-app deploys istag/my-web-app:latest <-
+    bc/my-web-app source builds uploaded code on istag/dotnet:7.0-ubi8 
+    deployment #2 running for 17 hours - 1 pod
+    deployment #1 deployed 17 hours ago
+
+
+1 info identified, use 'oc status --suggest' to see details.
+```
 Go to your web browser and type in the url http://my-web-app-my-first-app.apps-crc.testing to see your app running in OCP.
 ![Welcome running on OCP](/images/dot04.jpg)
-We can see the pods running in our project
+
+Back at the command we can examine some components running on OCP.  Let's look at what pods are in our project.
 ```
 % oc get pods
 NAME                         READY   STATUS      RESTARTS   AGE
