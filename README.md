@@ -27,7 +27,7 @@ Download the Red Hat OpenShift Local (RHOL) for you OS from the Red Hat Hybrid C
 
 Chose the "local" tab and select your OS.
 
-After you download CRC, click the Download pull secret
+After you download RHOL, click the Download pull secret
 
 ![Create an OpenShift cluster](/images/dot02.jpg)
 
