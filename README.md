@@ -393,59 +393,84 @@ Let's test our change locally in .Net.  Go back to the "root" of your project fo
 % cd ~/projects/myWebApp 
 % dotnet run
 ``` 
-![Update .Net App](/images/dot08.jpg)
+![Update .Net App](/images/dot09.jpg)
 
-
-
-
-
-
-
-
-- At this point we can log into the OCP console and see our application.
-
-![OCP Console login](/images/dot05.png)
-
-- Click on the Topology tab on the left side and the click the my-web-app project link.
-
-![OCP Console Topology](/images/dot06.png)
-
-- Hover over the app icon and click on the blue arrow to see more detail about our application.  Notice there is no route defined to get to our application.  A service is created when we created a new application, but we need to expose that service via a route to access our application from outside the OCP cluster
-
-![application detail](/images/dot07.png)
-
-
-- Back at the command line let's make our app available to the outside world.
-
-      % oc expose service/my-web-app
-      route.route.openshift.io/my-web-app exposed
-      
-- Get the the URL to your app.
-
-      # oc status
-
+From the projects directory rebuild the changed .Net artifacts
 ```
+% dotnet publish myWebApp -f net7.0 -c Release
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  myWebApp -> /Users/palucas/projects/myWebApp/bin/Release/net7.0/myWebApp.dll
+  myWebApp -> /Users/palucas/projects/myWebApp/bin/Release/net7.0/publish/
+```
+
+Let's deploy update application to OCP
+
+Make sure you are logged in to OCP
+Login to OCP as developer.  Make sure you see that you are using the same project we originally created for our first application.
+```
+% eval $(crc oc-env)
+% % oc login -u developer -p developer https://api.crc.testing:6443
+Login successful.
+
+You have one project on this server: "my-first-app"
+
+Using project "my-first-app".
+```
+
+Rebuild the applciation
+```
+% oc start-build my-web-app --from-dir=bin/Release/net7.0/publish
+Uploading directory "bin/Release/net7.0/publish" as binary input for the build ...
+.
+Uploading finished
+build.build.openshift.io/my-web-app-2 started
+```
+
+Let's check the status of the build process of our updated application.
+```
+% oc status
 In project my-first-app on server https://api.crc.testing:6443
 
 http://my-web-app-my-first-app.apps-crc.testing to pod port 8080-tcp (svc/my-web-app)
   deployment/my-web-app deploys istag/my-web-app:latest <-
-    bc/my-web-app source builds uploaded code on istag/dotnet:5.0-ubi8 
-    deployment #2 running for 8 minutes - 1 pod
-    deployment #1 deployed 8 minutes ago
+    bc/my-web-app source builds uploaded code on istag/dotnet:7.0-ubi8 
+      build #2 running for 17 seconds
+      build #1 succeeded 19 hours ago
+    deployment #2 running for 19 hours - 1 pod
+    deployment #1 deployed 19 hours ago
 
 
 1 info identified, use 'oc status --suggest' to see details.
 ```
 
-- Back at the OCP console we now see our app is available to the outside world.  You can click on the link in the Routes section to access your application.
+Let's check log file of the build configuration to see when it finishes.  Watch for the 'Push successful' message.
+```
+oc logs -f bc/my-web-app 
+Receiving source from STDIN as archive ...
+...
+Push successful
 
-![App route available](/images/dot08.png)
+```
 
-## Access the OCP console to see your project and app
-- No we can see our application running on OCP.  My URL looked like this: https://console-openshift-console.apps-crc.testing
+If you forgot your applications URL, use the oc status command to get the URL
+```
+oc status
+In project my-first-app on server https://api.crc.testing:6443
 
-![.Net App Running on OCP](/images/dot09.png)
+http://my-web-app-my-first-app.apps-crc.testing to pod port 8080-tcp (svc/my-web-app)
+...
+```
 
+You'll now see the new version of our applcation has been deployed to OCP
+![Updated .Net App](/images/dot10.jpg)
+
+Go back to the OCP console and make sure you are under the Administrator view.  We can see the new build config under the Workloads section, and the new Pod instance for our application
+![OCP Console Pods](/images/dot11.jpg)
+
+### Conclusion
+From this brief tutorial we can see how easy it is to bring our .Net applications in to the modern kubernetes architecture.  OpenShift can run anywhere from the desktop to the datacenter to the public cloud.  You can integrate OCP into your .Net CI/CD pipeline to make fast and efficient enterprise software lifecycle environment.
 
 ## References
 - [Product Documentation for Red Hat OpenShift Local 2.12](https://access.redhat.com/documentation/en-us/red_hat_openshift_local/2.12)
