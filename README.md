@@ -87,7 +87,8 @@ Use the 'oc' command line interface:
   $ eval $(crc oc-env)
   $ oc login -u developer https://api.crc.testing:6443
 ```
-- We can test our login to RHOL with the information from the installation.  We use the oc login command provide the userid and passward along with the URL to the RHOL Server.
+
+We can test our login to RHOL with the information from the installation.  We use the oc login command provide the userid and passward along with the URL to the RHOL Server.
 ```
 % eval $(crc oc-env)
 % oc login -u kubeadmin -p zXje7-...-6aUho https://api.crc.testing:6443
@@ -128,7 +129,7 @@ When you are finished return to the terminal window and type Ctrl-c to stop the 
 
 ## Prep app for OpenShift Container Platform (RHOL)
 
-From here forward, I simply refert Red Hat OpenShift Locat to OpenShift Container platform (OCP).  Use the following command to make the .Net app ready for the OCP build and deploy process. The dotnet publish command preps the applicaiton for deployment storing the .Net artifacts in a release folder.  The -f swith sets the framework to .Net 7.0 and -c switch defines the build configuration
+I  refer to Red Hat OpenShift Locat as OpenShift Container platform (OCP) for the following steps.  Use the following command to make the .Net app ready for the OCP build and deploy process. The dotnet publish command preps the applicaiton for deployment storing the .Net artifacts in a release folder.  The -f swith sets the framework to .Net 7.0 and -c switch defines the build configuration
 
 ```
 % cd ..
@@ -347,6 +348,54 @@ We can view Details, Resources and Observe (monitor) our application. Clicking o
 While logged in as the developer we can change the console view from the Developer view to the Adminstrator view.  We can create, review and observe our all the Kubernetes objecst that make up our application(s) running in OpenShift.  
 
 ![OCP Admin view](/images/dot08.jpg)
+
+## Updating the Application
+Let's make a simple change to our application and then update it on OCP.
+
+Let's change the "Welcome" message to "Welcome from OpenShift Container Platform!".
+
+
+Back af the folder containing your .Net project, navigate to the Home directory under your project.
+
+```
+% cd ~/projects/myWebApp/Views/Home
+ ```
+
+In the Home directory open the file titled Index.cshtml with your favorite editor. 
+```
+% vi Index.cshtml
+```
+      
+Change the following line:
+```
+<h1 class="display-4">Welcome</h1>
+```      
+
+to:
+```
+<h1 class="display-4">Welcome to .Net running on Red Hat OpenShift Container</h1>
+```
+
+My file looked like this...
+```
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to .Net running on Red Hat OpenShift Container</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+```
+      
+Let's test our change locally in .Net.  Go back to the "root" of your project folder and rerun the application to see the changed message
+```
+% cd ~/projects/myWebApp 
+% dotnet run
+``` 
+![Update .Net App](/images/dot08.jpg)
+
+
 
 
 
