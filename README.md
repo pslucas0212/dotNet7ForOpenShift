@@ -11,8 +11,7 @@ Updated 19 January 2023
 
 ![Download .Net 7](images/dot01.jpg)
 
-- Install the .Net SDK per the instructions for your OS
-- Test your .Net SDK installation
+Install the .Net SDK per the instructions for your OS and test your .Net SDK installation
 
 ```
 % dotnet --version
@@ -20,14 +19,17 @@ Updated 19 January 2023
 ```
 
 ## Install Red Hat OpenShift Local
-- For this next step you will need a Red Hat account.
-- Download the Red Hat OpenShift Local (RHOL) for you OS from the Red Hat Hybrid Cloud Console [Create an OpenShift cluster](https://console.redhat.com/openshift/create/local) 
-- Chose the "local" tab and select your OS.
-- After you download CRC, click the Download pull secret
+For this next step you will need a Red Hat account.
+
+Download the Red Hat OpenShift Local (RHOL) for you OS from the Red Hat Hybrid Cloud Console [Create an OpenShift cluster](https://console.redhat.com/openshift/create/local) 
+
+Chose the "local" tab and select your OS.
+
+After you download CRC, click the Download pull secret
 
 ![Create an OpenShift cluster](/images/dot02.jpg)
 
-- After you download the code run the installer.  The latest release of RHOL takes care of installing RHOL for you.
+After you download the code run the installer.  The latest release of RHOL takes care of installing RHOL for you.
 
 ## Prep your CodeReady Containers environment
 - After installing RHOL, we will do the rest of the work on the command line.  On the Mac open a Terminal window.  I placed the pull secret in my home Documents folder in a folder I labeled crc.  On the Mac or Linux it might look like this: ~/Documents/rhol
