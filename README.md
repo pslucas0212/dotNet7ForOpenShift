@@ -130,7 +130,7 @@ When you are finished return to the terminal window and type Ctrl-c to stop the 
 
 ## Prep app for OpenShift Container Platform (RHOL)
 
-I refer to Red Hat OpenShift Local as OpenShift Container platform (OCP) for the following steps.  Use the following command to make the .Net app ready for the OCP build and deploy process. The dotnet publish command preps the applicaiton for deployment storing the .Net artifacts in a release folder.  The -f swith sets the framework to .Net 7.0 and -c switch defines the build configuration
+Throughtout the tutorial I'll refer to Red Hat OpenShift Local as OpenShift Container platform (OCP).  Use the following command to make the .Net app ready for the OCP build and deploy process. The dotnet publish command preps the applicaiton for deployment storing the .Net artifacts in a release folder.  The -f swith sets the framework to .Net 7.0 and -c switch defines the build configuration
 
 ```
 % cd ..
