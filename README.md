@@ -32,7 +32,7 @@ After you download RHOL, click the Download pull secret button.
 
 After you download the code run the installer.  The latest release of RHOL takes care of installing RHOL for you.
 
-## Prep your CodeReady Containers environment
+## Prepare your Red Hat OpenShift Local environment
 After installing RHOL, we will do the rest of the work on the command line.  On the Mac open a Terminal window.  I placed the pull secret in my home Documents folder in a folder I labeled rhol.  On the Mac or Linux it might look like this: ~/Documents/rhol
 
 ```
@@ -128,7 +128,7 @@ Now listening on: http://localhost:5206
 
 When you are finished return to the terminal window and type Ctrl-c to stop the .Net test server.
 
-## Prep app for OpenShift Container Platform (RHOL)
+## Prepare our .Net application for OpenShift Container Platform (RHOL)
 
 Throughtout the tutorial I'll refer to Red Hat OpenShift Local as OpenShift Container platform (OCP).  Use the following command to make the .Net app ready for the OCP build and deploy process. The dotnet publish command preps the applicaiton for deployment storing the .Net artifacts in a release folder.  The -f swith sets the framework to .Net 7.0 and -c switch defines the build configuration
 
