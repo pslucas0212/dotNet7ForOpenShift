@@ -1,6 +1,6 @@
 # Run .Net 7 code on Red Hat OpenShift Container Platform on Mac OS
 
-In this tutorial we will create a simple Hello World .Net 7 application and run it on a desktop instance of Red Hat OpenShift for developers called OpenShift Local. 
+In this tutorial we will create a simple Hello World .Net 7 application and run it on a desktop instance of Red Hat OpenShift designed for testing applications locally called OpenShift Local. 
 
 The tutorial will demonstrate how easy it is to get started with development in Kubernetes with the Red Hat OpenShift Container Platform (OCP). OCP supports many languages and you can easily bring your .Net code to the world of containers and Kubernetes with OCP.
 
@@ -8,11 +8,11 @@ Updated 20 January 2023
 
 ### Pre-req .Net 7 SDK
 - Note: I'm using a Mac for this example.
-- Download and install [.Net 7 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/7.0) for your OS. For this tutorial I used Microsoft's installation package for SDK 7.0.102
+- Download and install [.Net 7 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/7.0) for your OS. For this tutorial I used Microsoft's installation package for SDK 7.0.102.
 
 ![Download .Net 7](images/dot01.jpg)
 
-Install the .Net SDK per the instructions for your OS and test your .Net SDK installation
+Install the .Net SDK per the instructions for your OS and test your .Net SDK installation.
 
 ```
 % dotnet --version
@@ -30,7 +30,7 @@ After you download RHOL, click the Download pull secret button.
 
 ![Create an OpenShift cluster](/images/dot02.jpg)
 
-After you download the code run the installer.  The latest release of RHOL takes care of installing RHOL for you.
+After you download the code run the installer.  
 
 ## Prepare your Red Hat OpenShift Local environment
 After installing RHOL, we will do the rest of the work on the command line.  On the Mac open a Terminal window.  I placed the pull secret in my home Documents folder in a folder I labeled rhol.  On the Mac or Linux it might look like this: ~/Documents/rhol
@@ -47,7 +47,7 @@ CRC version: 2.12.0+ea98bb41
 OpenShift version: 4.11.18
 Podman version: 4.2.0
 ```      
-Run the setup command to download the RHOL bundle and prep your environment. This typically takes a few mintues.
+Run the setup command to download the RHOL bundle and prep your environment. The RHOL setup typically takes a few mintues.
 ```      
 % crc setup
 RHOL is constantly improving and we would like to know more about usage (more details at https://developers.redhat.com/article/tool-data-collection)
@@ -56,7 +56,7 @@ Your system is correctly setup for using CRC. Use 'crc start' to start the insta
  ```
         
 ## Start up Red Hat OpenShift Local
-Start up RHOL an include the pull secret you previously downloaded
+Start up RHOL an include the pull secret you previously downloaded.
 
 ```
 % crc start -p ~/Documents/rhol/pull-secret
@@ -100,13 +100,13 @@ You have access to 67 projects, the list has been suppressed. You can list all p
 Using project "default".
 ```
 ## Create a sample Hello World .Net web app
-Now let's create our sample .Net application.  Choose a directory where you would like to store your sample appication.  I created my sample Hello World .Net web app in a directory called projects.  We will use the .Net Model-View-Controller (mvc) template to build our sample .Net application.
+Let's create our sample .Net application.  Choose a directory where you would like to store your sample appication.  I created my sample Hello World .Net web app in a directory called projects.  We will use the .Net Model-View-Controller (mvc) template to build our sample .Net application.
 
 ```
 % dotnet new mvc -o myWebApp --no-https
 ```
 
-When the sample app code has finished generating change into the applicaiton's directory and start up the applicaiton.
+When the sample app code has finished generating change into the applicaiton's directory and start up the applicaiton to test it.
 
 ```
 % cd myWebApp
@@ -119,7 +119,7 @@ info: Microsoft.Hosting.Lifetime[0]
        
 The app starts up quickly and is ready to test when **Content root path:...** printed to the terminal screen.  Follow the instructions to access the application via a browser.
 
-The URL for my sample app was found on this line in the terminal output
+The URL for my sample app was found on this line in the terminal output.
 ```
 Now listening on: http://localhost:5206
 ```
@@ -130,7 +130,7 @@ When you are finished return to the terminal window and type Ctrl-c to stop the 
 
 ## Prepare our .Net application for OpenShift Container Platform (RHOL)
 
-Throughtout the tutorial I'll refer to Red Hat OpenShift Local as OpenShift Container platform (OCP).  Use the following command to make the .Net app ready for the OCP build and deploy process. The dotnet publish command preps the applicaiton for deployment storing the .Net artifacts in a release folder.  The -f switch sets the framework to the .Net 7.0 framework and -c switch defines it as a build configuration
+Throughtout the tutorial I'll refer to Red Hat OpenShift Local as OpenShift Container platform (OCP).  Use the following command to make the .Net app ready for the OCP build and deploy process. The dotnet publish command preps the applicaiton for deployment storing the .Net artifacts in a release folder.  The -f switch sets the framework to the .Net 7.0 framework and -c switch defines it as a build configuration.
 
 ```
 % cd ..
@@ -142,7 +142,7 @@ MSBuild version 17.4.1+9a89d02ff for .NET
   myWebApp -> /Users/palucas/projects/myWebApp/bin/Release/net7.0/publish/
 ```
 ## Prep OCP for .Net
-Login to OCP with the username developer
+Login to OCP with the username developer.
 ```
 % eval $(crc oc-env)
 % oc login -u developer -p developer https://api.crc.testing:6443
@@ -155,7 +155,7 @@ You don't have any projects. You can try to create a new project, by running
 
 ```
 
-To see who you are logged in as type the following
+To see who you are logged in as type the following:
 ```
 % oc whoami
 developer
@@ -268,7 +268,7 @@ svc/my-web-app - 10.217.5.240:8080
 1 info identified, use 'oc status --suggest' to see details.
 ```
 
-We can see that the... service is create with appplication deployment
+We can see that the ClusterIP service is create with appplication deployment.
 ```
 % oc get svc
 NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
@@ -281,14 +281,14 @@ Let's expose the app to the world by creating a route to the app.
 route.route.openshift.io/my-web-app exposed
 ```
 
-Let's see the route we just created
+Let's see the route we just created.
 ```
 % oc get route/my-web-app
 NAME         HOST/PORT                                  PATH   SERVICES     PORT       TERMINATION   WILDCARD
 my-web-app   my-web-app-my-first-app.apps-crc.testing          my-web-app   8080-tcp                 None
 ```
 
-Let's get the url to the app
+Let's get the url to the application.
 ```
 % oc status
 In project my-first-app on server https://api.crc.testing:6443
@@ -321,9 +321,9 @@ NAME         READY   UP-TO-DATE   AVAILABLE   AGE
 my-web-app   1/1     1            1           8m4s
 ```
 
-## Access the OCP console to see your project and app
+## Access the OCP console to see your project and application
 
-Let's take a look at the OCP Console 
+Let's take a brief look at the OCP Console 
 ```
 % crc console
 Opening the OpenShift Web Console in the default browser...
@@ -338,7 +338,7 @@ Enter your Username and Password, and click the blue Login button.
 
 When logging into the OCP console for the first time, you may offered to take a tour of the console.  Feel free to take the tour or skip it.
 
-Currently we are logged in as the developer username with the Developer view of the OCP Console.  Click on the Topology tab on the side menu bar to see the topology of our application.  We can see our app has successfully deployed with the green check circle.  On the upper right we click the arrow to open application UI in a new browser tab.  If we click the app name a side screen will open with additional application deployment details
+Currently we are logged in as the developer username with the Developer view of the OCP Console.  Click on the Topology tab on the side menu bar to see the topology of our application.  We can see our application has successfully deployed with the green check circle.  On the upper right we click the arrow to open application UI in a new browser tab.  If we click the app name a side screen will open with additional application deployment details
 
 ![OCP Topology View](/images/dot06.jpg)
 
@@ -346,7 +346,7 @@ We can view Details, Resources and Observe (monitor) our application. Clicking o
 
 ![OCP app view](/images/dot07.jpg)
 
-While logged in as the developer we can change the console view from the Developer view to the Adminstrator view.  We can create, review and observe our all the Kubernetes objects that make up our application(s) running in OpenShift.  
+While logged in as the developer we can change the console view from the Developer view to the Adminstrator view.  We can create, review and observe  all the Kubernetes objects that make up our application(s) running in OpenShift.  
 
 ![OCP Admin view](/images/dot08.jpg)
 
@@ -389,7 +389,7 @@ My file looked like this...
 </div>
 ```
       
-Let's test our change locally in .Net.  Go back to the "root" of your project folder and rerun the application to see the changed message
+Let's test our change locally in .Net.  Go back to the "root" of your project folder and rerun the application to see the changed message.
 ```
 % cd ~/projects/myWebApp 
 % dotnet run
@@ -406,7 +406,7 @@ MSBuild version 17.4.1+9a89d02ff for .NET
   myWebApp -> /Users/palucas/projects/myWebApp/bin/Release/net7.0/publish/
 ```
 
-Let's deploy update application to OCP
+Let's deploy the application update to OCP.
 
 Login to OCP as developer.  Make sure you see that you are using the same project we originally created for our first application.
 ```
@@ -466,7 +466,7 @@ http://my-web-app-my-first-app.apps-crc.testing to pod port 8080-tcp (svc/my-web
 You'll now see the new version of our applcation has been deployed to OCP
 ![Updated .Net App](/images/dot10.jpg)
 
-Go back to the OCP console and change to the Administrator view.  We can see the new build config under the Workloads section, and the new Pod instance for our application
+Go back to the OCP console and change to the Administrator view.  We can see the new build config under the Workloads section, and the new Pod instance for our application.
 ![OCP Console Pods](/images/dot11.jpg)
 
 ### Conclusion
