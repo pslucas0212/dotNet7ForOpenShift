@@ -182,7 +182,7 @@ NAME           DISPLAY NAME   STATUS
 my-first-app                  Active
 ```
 
-If this is your first .Net project in RHOL, then you'll need to add a .Net image stream.  Image streams makes it easy to build and deploy our .Net app in a container and can be used to trigger new deployments when a new image becomes available   See links below for more informaton on image streams.
+If this is your first .Net project in RHOL, then you'll need to add a .Net image stream to our OCP environment.  Image streams makes it easy to build and deploy our .Net app in a container and can be used to trigger new deployments when a new image becomes available   See links the appendeix section for more informaton on image streams.
  ```
 % oc create -f https://raw.githubusercontent.com/redhat-developer/s2i-dotnetcore/master/dotnet_imagestreams.json
 imagestream.image.openshift.io/dotnet created
@@ -191,7 +191,7 @@ imagestream.image.openshift.io/dotnet-runtime created
 
 ## Build, Deploy and access your new .Net app
 
-Create a new build configuration.  We will use a Red Hat Universal Base Image (ubi8) that includes the .Net 7 SDK and runtimes.  UBI containers are OCI-compliant.  We are building the app from binary contents.  
+Create a new build configuration.  We will use a Red Hat Universal Base Image (ubi8) that includes the .Net 7 SDK and runtimes on Red Hat Enterprise Linux 8.  UBI containers are OCI-compliant.  We are building the app from binary contents.  
 ```
 % oc new-build --name=my-web-app dotnet:7.0-ubi8 --binary=true
 warning: Cannot check if git requires authentication.
@@ -338,7 +338,7 @@ Enter your Username and Password, and click the blue Login button.
 
 When logging into the OCP console for the first time, you may offered to take a tour of the console.  Feel free to take the tour or skip it.
 
-Currenlty we are logged in as the developer username with the Developer view of the OCP Console.  Click on the Topology tab on the side menu bar to see the topology of our application.  We can see our app has successfully deployed with the green check circle.  On the upper right we click the arrow to open application UI in a new browser tab.  If we click the app name a side screen will open with additional application deployment details
+Currently we are logged in as the developer username with the Developer view of the OCP Console.  Click on the Topology tab on the side menu bar to see the topology of our application.  We can see our app has successfully deployed with the green check circle.  On the upper right we click the arrow to open application UI in a new browser tab.  If we click the app name a side screen will open with additional application deployment details
 
 ![OCP Topology View](/images/dot06.jpg)
 
