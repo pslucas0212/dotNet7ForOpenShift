@@ -142,7 +142,7 @@ MSBuild version 17.4.1+9a89d02ff for .NET
   myWebApp -> /Users/palucas/projects/myWebApp/bin/Release/net7.0/publish/
 ```
 ## Prep OCP for .Net
-Login to OCP with the name username developer
+Login to OCP with the username developer
 ```
 % eval $(crc oc-env)
 % oc login -u developer -p developer https://api.crc.testing:6443
