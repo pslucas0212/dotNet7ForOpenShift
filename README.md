@@ -377,7 +377,7 @@ to:
 <h1 class="display-4">Welcome to .Net running on Red Hat OpenShift Containe Platformr</h1>
 ```
 
-My file looked like this...
+My file looked like the following.
 ```
 @{
     ViewData["Title"] = "Home Page";
@@ -396,7 +396,7 @@ Let's test our change locally in .Net.  Go back to the "root" of your project fo
 ``` 
 ![Update .Net App](/images/dot09.jpg)
 
-From the projects directory rebuild the changed .Net artifacts
+From the projects directory rebuild the changed .Net artifacts.
 ```
 % dotnet publish myWebApp -f net7.0 -c Release
 MSBuild version 17.4.1+9a89d02ff for .NET
