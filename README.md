@@ -456,7 +456,7 @@ http://my-web-app-my-first-app.apps-crc.testing to pod port 8080-tcp (svc/my-web
 1 info identified, use 'oc status --suggest' to see details.
 ```
 
-Let's check log file of the build configuration to see when it finishes.  Watch for the 'Push successful' message which indicates the update is finished.
+Let's check the log file of the build configuration to see when the build finishes.  Watch for the 'Push successful' message which indicates the update is finished.
 ```
 oc logs -f bc/my-web-app 
 Receiving source from STDIN as archive ...
