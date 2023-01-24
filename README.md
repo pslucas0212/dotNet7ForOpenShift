@@ -193,7 +193,7 @@ NAME           DISPLAY NAME   STATUS
 my-first-app                  Active
 ```
 
-If this is your first .Net project in RHOL, then you'll need to add a .Net image stream to our OCP environment.  Image streams makes it easy to build and deploy our .Net app in a container and can be used to trigger new deployments when a new image becomes available   See links the appendix section for more informaton on image streams.
+Image streams makes it easy to build and deploy our .Net app in a container and can be used to trigger new deployments when a new image becomes available   If this is your first .Net project in RHOL, then you'll need to add a .Net image stream to our OCP environment. See links the appendix section for more informaton on image streams.
  ```
 % oc create -f https://raw.githubusercontent.com/redhat-developer/s2i-dotnetcore/master/dotnet_imagestreams.json
 imagestream.image.openshift.io/dotnet created
