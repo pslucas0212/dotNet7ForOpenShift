@@ -43,9 +43,9 @@ Check the RHOL version.  Note that RHOL still uses the previous Code Ready Conta
 
 ```
 % crc version
-CRC version: 2.12.0+ea98bb41
-OpenShift version: 4.11.18
-Podman version: 4.2.0
+CRC version: 2.13.1+b5b864fd
+OpenShift version: 4.12.0
+Podman version: 4.3.1
 ```      
 Run the setup command to download the RHOL bundle and prep your environment. The RHOL setup typically takes a few mintues.
 ```      
@@ -88,6 +88,17 @@ Use the 'oc' command line interface:
   $ eval $(crc oc-env)
   $ oc login -u developer https://api.crc.testing:6443
 ```
+
+We can check the status of RHOL with crc status command:
+```
+% crc status
+CRC VM:          Running
+OpenShift:       Running (v4.12.0)
+RAM Usage:       6.352GB of 9.399GB
+Disk Usage:      15.29GB of 32.74GB (Inside the CRC VM)
+Cache Usage:     73.7GB
+Cache Directory: /Users/palucas/.crc/cache
+```. 
 
 We can test our login to RHOL with the information from the installation.  We use the oc login command and provide the username and password along with the URL to the RHOL Server.
 ```
