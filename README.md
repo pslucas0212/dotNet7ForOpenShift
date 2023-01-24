@@ -475,10 +475,10 @@ http://my-web-app-my-first-app.apps-crc.testing to pod port 8080-tcp (svc/my-web
 ```
 
 You'll now see the new version of our applcation has been deployed to OCP
-![Updated .Net App](/images/dot10.jpg)
+![Updated .Net App](/images/dot10a.jpg)
 
 Go back to the OCP console and change to the Administrator view.  We can see the new build config under the Workloads section, and the new Pod instance for our application.
-![OCP Console Pods](/images/dot11.jpg)
+![OCP Console Pods](/images/dot11a.jpg)
 
 ### Conclusion
 From this brief tutorial we can see how easy it is to bring our .Net applications in to a modern enterprise ready kubernetes platform like OpenShift.  OpenShift can run anywhere from the desktop to the datacenter to the public cloud in any hybrid combination.  OCP is flexible enough to
