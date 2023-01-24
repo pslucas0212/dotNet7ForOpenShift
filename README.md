@@ -98,7 +98,7 @@ RAM Usage:       6.352GB of 9.399GB
 Disk Usage:      15.29GB of 32.74GB (Inside the CRC VM)
 Cache Usage:     73.7GB
 Cache Directory: /Users/palucas/.crc/cache
-```. 
+```
 
 We can test our login to RHOL with the information from the installation.  We use the oc login command and provide the username and password along with the URL to the RHOL Server.
 ```
