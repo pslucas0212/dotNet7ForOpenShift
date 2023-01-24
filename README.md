@@ -405,7 +405,7 @@ Let's test our change locally in .Net.  Go back to the "root" of your project fo
 % cd ~/projects/myWebApp 
 % dotnet run
 ``` 
-![Update .Net App](/images/dot09.jpg)
+![Update .Net App](/images/dot10b.jpg)
 
 From the projects directory rebuild the changed .Net artifacts.
 ```
@@ -475,7 +475,7 @@ http://my-web-app-my-first-app.apps-crc.testing to pod port 8080-tcp (svc/my-web
 ```
 
 You'll now see the new version of our applcation has been deployed to OCP
-![Updated .Net App](/images/dot10b.jpg)
+![Updated .Net App](/images/dot10.jpg)
 
 Go back to the OCP console and change to the Administrator view.  We can see the new build config under the Workloads section, and the new Pod instance for our application.
 ![OCP Console Pods](/images/dot11a.jpg)
