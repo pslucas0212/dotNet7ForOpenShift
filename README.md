@@ -103,7 +103,7 @@ Cache Directory: /Users/palucas/.crc/cache
 We can test our login to RHOL with the information from the installation.  We use the oc login command and provide the username and password along with the URL to the RHOL Server.
 ```
 % eval $(crc oc-env)
-% oc login -u kubeadmin -p zXje7-...-6aUho https://api.crc.testing:6443
+% oc login -u developer -p developer https://api.crc.testing:6443
 Login successful.
 
 You have access to 67 projects, the list has been suppressed. You can list all projects with 'oc projects'
