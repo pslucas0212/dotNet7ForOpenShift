@@ -39,7 +39,7 @@ After installing RHOL, we will do the rest of the work on the command line.  On 
 % mv pull-secret ~/Documents/rhol/
 ```
 
-Check the RHOL version.  Note that RHOL still uses the previous Code Ready Containers acronym - crc - on the command line to start and manage RHOL.  As of 01/19/2023 the latest release RHOL is 2.12 with OpenShift 4.11.18
+Check the RHOL version.  Note that RHOL still uses the previous Code Ready Containers acronym - crc - on the command line to start and manage RHOL.  As of 01/24/2023 the latest release RHOL is 2.13.1 with OpenShift 4.11.18
 
 ```
 % crc version
