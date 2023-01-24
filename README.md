@@ -193,7 +193,7 @@ NAME           DISPLAY NAME   STATUS
 my-first-app                  Active
 ```
 
-If this is your first .Net project in RHOL, then you'll need to add a .Net image stream to our OCP environment.  Image streams makes it easy to build and deploy our .Net app in a container and can be used to trigger new deployments when a new image becomes available   See links the appendeix section for more informaton on image streams.
+If this is your first .Net project in RHOL, then you'll need to add a .Net image stream to our OCP environment.  Image streams makes it easy to build and deploy our .Net app in a container and can be used to trigger new deployments when a new image becomes available   See links the appendix section for more informaton on image streams.
  ```
 % oc create -f https://raw.githubusercontent.com/redhat-developer/s2i-dotnetcore/master/dotnet_imagestreams.json
 imagestream.image.openshift.io/dotnet created
@@ -279,7 +279,7 @@ svc/my-web-app - 10.217.5.240:8080
 1 info identified, use 'oc status --suggest' to see details.
 ```
 
-We can see that the ClusterIP service is create with appplication deployment.
+We can see that the ClusterIP service is created with appplication build and deployment.
 ```
 % oc get svc
 NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
@@ -299,7 +299,7 @@ NAME         HOST/PORT                                  PATH   SERVICES     PORT
 my-web-app   my-web-app-my-first-app.apps-crc.testing          my-web-app   8080-tcp                 None
 ```
 
-Let's get the url to the application.
+Let's get the url to the application.  We can use the oc status command to get the URL to the application after exposing the application's service to the outside world.
 ```
 % oc status
 In project my-first-app on server https://api.crc.testing:6443
@@ -317,7 +317,7 @@ http://my-web-app-my-first-app.apps-crc.testing to pod port 8080-tcp (svc/my-web
 Go to your web browser and type in the url http://my-web-app-my-first-app.apps-crc.testing to see your app running in OCP.
 ![Welcome running on OCP](/images/dot04.jpg)
 
-Back at the command we can examine some components running on OCP.  Let's look at what pods are in our project.
+Back at the command we can examine some components running on OCP. We've previously seen services and routes related to our application.  Let's look at what pods are in our project.
 ```
 % oc get pods
 NAME                         READY   STATUS      RESTARTS   AGE
@@ -325,7 +325,7 @@ my-web-app-1-build           0/1     Completed   0          10m
 my-web-app-ddfbd687b-9h5tf   1/1     Running     0          7m43s
 ```
 
-And we can see our deployments in our project
+And we can see our deployments in our project.
 ```
 % oc get deployments
 NAME         READY   UP-TO-DATE   AVAILABLE   AGE
@@ -334,13 +334,13 @@ my-web-app   1/1     1            1           8m4s
 
 ## Access the OCP console to see your project and application
 
-Let's take a brief look at the OCP Console 
+Let's take a brief look at the OCP Administration Console. 
 ```
 % crc console
 Opening the OpenShift Web Console in the default browser...
 ```
 
-The crc console commands launches the console in your default browser.  Typically the URL looks like https://console-openshift-console.apps-crc.testing/  Your browser will tell you that your connection is not private as the OCP TLS certificate is not installed with your broswer certificates.  Accept any certificates presented to you.
+The crc console commands launches the ODP console in your default browser.  Typically the URL looks like https://console-openshift-console.apps-crc.testing/  Your browser will tell you that your connection is not private as the OCP TLS certificate is not installed with your broswer certificates.  Accept any certificates presented to you.
 
 
 Enter your Username and Password, and click the blue Login button.
@@ -367,7 +367,7 @@ Let's make a simple change to our application and then update it on OCP.
 Let's change the "Welcome" message to "Welcome to .Net running on Red Hat OpenShift Container Platform!".
 
 
-Back af the folder containing your .Net project, navigate to the Home directory under your project.
+Back at the folder containing your .Net project, navigate to the Home directory under your project.
 
 ```
 % cd ~/projects/myWebApp/Views/Home
@@ -388,7 +388,7 @@ to:
 <h1 class="display-4">Welcome to .Net running on Red Hat OpenShift Containe Platformr</h1>
 ```
 
-My file looked like the following.
+My file looks like the following code.
 ```
 @{
     ViewData["Title"] = "Home Page";
@@ -430,7 +430,14 @@ You have one project on this server: "my-first-app"
 Using project "my-first-app".
 ```
 
-Rebuild amd deploy the updated applciation.  Since we have an existing project with the associated kubernetes objects, deploying the update is very easy with OCP.
+You can also check your current project with the following command:
+```
+% oc get project
+NAME           DISPLAY NAME   STATUS
+my-first-app                  Active
+```
+
+Rebuild amd deploy the updated applciation.  Since we have an existing project with the associated kubernetes objects, deploying our application update is very easy with OCP.
 ```
 % oc start-build my-web-app --from-dir=bin/Release/net7.0/publish
 Uploading directory "bin/Release/net7.0/publish" as binary input for the build ...
@@ -465,7 +472,7 @@ Push successful
 
 ```
 
-If you forgot the URL to our sample application, use the oc status command to get the URL
+If you forgot the URL to our sample application, use the oc status command to get the application URL.
 ```
 oc status
 In project my-first-app on server https://api.crc.testing:6443
