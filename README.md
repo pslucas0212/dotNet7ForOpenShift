@@ -24,7 +24,7 @@ For this next step you will need a Red Hat account.
 
 Download the Red Hat OpenShift Local (RHOL) for you OS from the Red Hat Hybrid Cloud Console [Create an OpenShift cluster](https://console.redhat.com/openshift/create/local) 
 
-Chose the "local" tab and select your OS.
+Choo,se the "local" tab and select your OS.
 
 After you download RHOL, click the Download pull secret button.
 
@@ -47,7 +47,7 @@ CRC version: 2.13.1+b5b864fd
 OpenShift version: 4.12.0
 Podman version: 4.3.1
 ```      
-Run the setup command to download the RHOL bundle and prep your environment. The RHOL setup typically takes a few mintues.
+Run the setup command to download the RHOL bundle and prep your environment. The RHOL setup typically takes a few minutesd.
 ```      
 % crc setup
 RHOL is constantly improving and we would like to know more about usage (more details at https://developers.redhat.com/article/tool-data-collection)
@@ -56,7 +56,7 @@ Your system is correctly setup for using CRC. Use 'crc start' to start the insta
  ```
         
 ## Start up Red Hat OpenShift Local
-Start up RHOL an include the pull secret you previously downloaded.
+Start up RHOL and include the pull secret you previously downloaded.
 
 ```
 % crc start -p ~/Documents/rhol/pull-secret
@@ -66,7 +66,7 @@ INFO Checking if crc-admin-helper executable is cached
 
 ````
 
-Depending on your hardware, it make several minutes for RHOL to startup.  Be sure to copy the login information that is displayed in the terminal after starting RHOL.  See example output below.
+Depending on your hardware, it may take several minutes for RHOL to startup.  Be sure to copy the login information that is displayed in the terminal after starting RHOL.  See example output below.
 
 ```
 ...
@@ -111,13 +111,13 @@ You have access to 67 projects, the list has been suppressed. You can list all p
 Using project "default".
 ```
 ## Create a sample Hello World .Net web app
-Let's create our sample .Net application.  Choose a directory where you would like to store your sample appication.  I created my sample Hello World .Net web app in a directory called projects.  We will use the .Net Model-View-Controller (mvc) template to build our sample .Net application.
+Let's create our sample .Net application.  Choose a directory where you would like to store your sample application.  I created my sample Hello World .Net web app in a directory called projects.  We will use the .Net Model-View-Controller (mvc) template to build our sample .Net application.
 
 ```
 % dotnet new mvc -o myWebApp --no-https
 ```
 
-When the sample app code has finished generating change into the applicaiton's directory and start up the applicaiton to test it.
+When the sample app code has finished generating change into the applications's directory and start up the application to test it.
 
 ```
 % cd myWebApp
@@ -141,7 +141,7 @@ When you are finished return to the terminal window and type Ctrl-c to stop the 
 
 ## Prepare our .Net application for OpenShift Container Platform (RHOL)
 
-Throughtout the tutorial I'll refer to Red Hat OpenShift Local as OpenShift Container platform (OCP).  Use the following command to make the .Net app ready for the OCP build and deploy process. The dotnet publish command preps the applicaiton for deployment storing the .Net artifacts in a release folder.  The -f switch sets the framework to the .Net 7.0 framework and -c switch defines it as a build configuration.
+Throughout the tutorial I'll refer to Red Hat OpenShift Local as OpenShift Container platform (OCP).  Use the following command to make the .Net app ready for the OCP build and deploy process. The dotnet publish command preps the application for deployment storing the .Net artifacts in a release folder.  The -f switch sets the framework to the .Net 7.0 framework and -c switch defines it as a build configuration.
 
 ```
 % cd ..
@@ -193,7 +193,7 @@ NAME           DISPLAY NAME   STATUS
 my-first-app                  Active
 ```
 
-Image streams makes it easy to build and deploy our .Net app in a container and can be used to trigger new deployments when a new image becomes available   If this is your first .Net project in RHOL, then you'll need to add a .Net image stream to our OCP environment. See links the appendix section for more informaton on image streams.
+Image streams makes it easy to build and deploy our .Net app in a container and can be used to trigger new deployments when a new image becomes available   If this is your first .Net project in RHOL, then you'll need to add a .Net image stream to our OCP environment. See links the appendix section for more information on image streams.
  ```
 % oc create -f https://raw.githubusercontent.com/redhat-developer/s2i-dotnetcore/master/dotnet_imagestreams.json
 imagestream.image.openshift.io/dotnet created
@@ -234,7 +234,7 @@ Uploading finished
 build.build.openshift.io/my-web-app-1 started
 ```
       
-You can also check status of the build process in the log file to see when the build is completed. 
+You can also check the status of the build process in the log file to see when the build is completed. 
 ```
 % oc logs -f bc/my-web-app
 Receiving source from STDIN as archive ...
@@ -279,7 +279,7 @@ svc/my-web-app - 10.217.5.240:8080
 1 info identified, use 'oc status --suggest' to see details.
 ```
 
-We can see that the ClusterIP service is created with appplication build and deployment.
+We can see that the ClusterIP service is created with application build and deployment.
 ```
 % oc get svc
 NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
@@ -299,7 +299,7 @@ NAME         HOST/PORT                                  PATH   SERVICES     PORT
 my-web-app   my-web-app-my-first-app.apps-crc.testing          my-web-app   8080-tcp                 None
 ```
 
-Let's get the url to the application.  We can use the oc status command to get the URL to the application after exposing the application's service to the outside world.
+Let's get the url for the application.  We can use the oc status command to get the URL to the application after exposing the application's service to the outside world.
 ```
 % oc status
 In project my-first-app on server https://api.crc.testing:6443
@@ -357,7 +357,7 @@ We can view Details, Resources and Observe (monitor) our application. Clicking o
 
 ![OCP app view](/images/dot07.jpg)
 
-While logged in as the developer we can change the console view from the Developer view to the Adminstrator view.  We can create, review and observe  all the Kubernetes objects that make up our application(s) running in OpenShift.  
+While logged in as the developer we can change the console view from the Developer view to the Administrator view.  We can create, review and observe  all the Kubernetes objects that make up our application(s) running in OpenShift.  
 
 ![OCP Admin view](/images/dot08.jpg)
 
@@ -481,7 +481,7 @@ http://my-web-app-my-first-app.apps-crc.testing to pod port 8080-tcp (svc/my-web
 ...
 ```
 
-You'll now see the new version of our applcation has been deployed to OCP
+You'll now see the new version of our application has been deployed to OCP.
 ![Updated .Net App](/images/dot11a.jpg)
 
 Go back to the OCP console and change to the Administrator view.  We can see the new build config under the Workloads section, and the new Pod instance for our application.
