@@ -437,7 +437,7 @@ NAME           DISPLAY NAME   STATUS
 my-first-app                  Active
 ```
 
-Rebuild amd deploy the updated applciation.  Since we have an existing project with the associated kubernetes objects, deploying our application update is very easy with OCP.
+Rebuild and deploy the updated application.  Since we have an existing project with the associated kubernetes objects, deploying our application update is very easy with OCP.
 ```
 % oc start-build my-web-app --from-dir=bin/Release/net7.0/publish
 Uploading directory "bin/Release/net7.0/publish" as binary input for the build ...
