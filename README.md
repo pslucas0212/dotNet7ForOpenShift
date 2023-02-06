@@ -492,7 +492,7 @@ From this brief tutorial we can see how easy it is to bring our .Net application
 integrate OCP into your .Net CI/CD pipeline using tools like Visual Code and GitLab to make for a fast and efficient enterprise software lifecycle environment.
 
 ## References
-- [Product Documentation for Red Hat OpenShift Local 2.12](https://access.redhat.com/documentation/en-us/red_hat_openshift_local/2.12)
+- [Getting Start Guided - 2.13](https://access.redhat.com/documentation/en-us/red_hat_openshift_local/2.13/html/getting_started_guide/index)
 - [Product Documentation for .NET 7.0](https://access.redhat.com/documentation/en-us/net/7.0)
-- [Managing Imagestreams OCP 4.11](https://docs.openshift.com/container-platform/4.11/openshift_images/image-streams-manage.html)
+- [Managing Imagestreams OCP 4.12](https://docs.openshift.com/container-platform/4.12/openshift_images/image-streams-manage.html)
 
