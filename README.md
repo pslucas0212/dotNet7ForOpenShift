@@ -465,7 +465,7 @@ http://my-web-app-my-first-app.apps-crc.testing to pod port 8080-tcp (svc/my-web
 
 Let's check the log file of the build configuration to see when the build finishes.  Watch for the 'Push successful' message which indicates the update is finished.
 ```
-oc logs -f bc/my-web-app 
+% oc logs -f bc/my-web-app 
 Receiving source from STDIN as archive ...
 ...
 Push successful
@@ -474,7 +474,7 @@ Push successful
 
 If you forgot the URL to our sample application, use the oc status command to get the application URL.
 ```
-oc status
+% oc status
 In project my-first-app on server https://api.crc.testing:6443
 
 http://my-web-app-my-first-app.apps-crc.testing to pod port 8080-tcp (svc/my-web-app)
